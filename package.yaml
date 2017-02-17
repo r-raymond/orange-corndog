@@ -1,0 +1,41 @@
+name:                orange-corndog
+synopsis:            A quick pathtracer
+description:         Please see README.md
+build-type:          Simple
+license:             GPL-3
+license-file:        LICENSE
+author:              Robin Raymond
+maintainer:          robin@robinraymond.de
+copyright:           2016 Robin Raymond
+category:            Video
+extra-source-files:  README.md
+github:              r-raymond/orange-corndog
+
+ghc-options: -Wall
+
+data-files:
+
+default-extensions:
+    - OverloadedStrings
+    - NoImplicitPrelude
+    - GeneralizedNewtypeDeriving
+    - DeriveGeneric
+    - FlexibleContexts
+
+dependencies:
+    - base >= 4.7 && < 5
+    - linear
+    - protolude
+    - gitrev
+    - fast-logger
+
+library:
+  source-dirs: src
+
+executables:
+    orange-corndog:
+        source-dirs: app
+        main: Main.hs
+        ghc-options: -threaded -rtsopts -with-rtsopts=-N
+        dependencies:
+            - orange-corndog
