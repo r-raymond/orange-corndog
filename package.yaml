@@ -1,7 +1,7 @@
 name:                orange-corndog
 synopsis:            A quick pathtracer
 description:         Please see README.md
-build-type:          Simple
+build-type:          Custom
 license:             GPL-3
 license-file:        LICENSE
 author:              Robin Raymond

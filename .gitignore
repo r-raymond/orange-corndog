@@ -1,3 +1,4 @@
 result
 orange-corndog.cabal
 dist
+src/Version.hs
