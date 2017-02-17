@@ -19,7 +19,7 @@ intersectSphereRay (OTY.Sphere c r) ray =
         then let sd = sqrt disc
                  t1 = (-1) * dh + sd
                  t2 = (-1) * dh - sd
-                 t  = smallerPositiveValue t1 t2
+                 t  = smallerPositiveValue t2 t1
                  dist = fmap (d LVE.^*) t
              in
                 fmap (o LAF..+^) dist

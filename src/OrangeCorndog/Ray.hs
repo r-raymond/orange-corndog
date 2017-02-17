@@ -1,0 +1,4 @@
+module OrangeCorndog.Ray
+    (
+    ) where
+

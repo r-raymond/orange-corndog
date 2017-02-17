@@ -28,6 +28,7 @@ dependencies:
     - protolude
     - gitrev
     - fast-logger
+    - hspec
 
 library:
   source-dirs: src
@@ -37,5 +38,11 @@ executables:
         source-dirs: app
         main: Main.hs
         ghc-options: -threaded -rtsopts -with-rtsopts=-N
+        dependencies:
+            - orange-corndog
+
+tests:
+    intersection:
+        main: test/Intersection.hs
         dependencies:
             - orange-corndog

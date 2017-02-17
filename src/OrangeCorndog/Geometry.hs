@@ -1,4 +1,0 @@
-module OrangeCorndog.Geometry
-    (
-    ) where
-

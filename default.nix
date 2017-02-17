@@ -1,4 +1,4 @@
-{ mkDerivation, base, fast-logger, gitrev, linear, protolude
+{ mkDerivation, base, fast-logger, gitrev, hspec, linear, protolude
 , stdenv
 }:
 mkDerivation {
@@ -8,10 +8,13 @@ mkDerivation {
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
-    base fast-logger gitrev linear protolude
+    base fast-logger gitrev hspec linear protolude
   ];
   executableHaskellDepends = [
-    base fast-logger gitrev linear protolude
+    base fast-logger gitrev hspec linear protolude
+  ];
+  testHaskellDepends = [
+    base fast-logger gitrev hspec linear protolude
   ];
   homepage = "https://github.com/r-raymond/orange-corndog#readme";
   description = "A quick pathtracer";
