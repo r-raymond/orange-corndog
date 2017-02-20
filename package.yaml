@@ -29,6 +29,7 @@ dependencies:
     - gitrev
     - fast-logger
     - hspec
+    - criterion
 
 library:
   source-dirs: src
@@ -42,7 +43,13 @@ executables:
             - orange-corndog
 
 tests:
-    intersection:
+    intersection-test:
         main: test/Intersection.hs
+        dependencies:
+            - orange-corndog
+
+benchmarks:
+    intersection-bench:
+        main: bench/Intersection.hs
         dependencies:
             - orange-corndog

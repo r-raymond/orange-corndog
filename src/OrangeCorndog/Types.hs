@@ -1,10 +1,11 @@
 module OrangeCorndog.Types
     ( FlType
-    , Vec
-    , Point
-    , newRay
+    , Vec, mkV
+    , Point, mkP
+    , mkRay
     , Ray(origin, direction)
     , Sphere(..)
+    , Triangle(..)
     ) where
 
 import           Protolude
@@ -18,8 +19,14 @@ type FlType = Float
 type Vec = LV3.V3 FlType
 type Point = LAF.Point LV3.V3 FlType
 
-newRay :: Point -> Point -> Ray
-newRay a b = Ray a dir
+mkP :: FlType -> FlType -> FlType -> Point
+mkP x y z = LAF.P $ LV3.V3 x y z
+
+mkV :: FlType -> FlType -> FlType -> Vec
+mkV = LV3.V3
+
+mkRay :: Point -> Point -> Ray
+mkRay a b = Ray a dir
   where
     dir = LME.signorm (b LAF..-. a)
 
@@ -33,4 +40,11 @@ data Sphere
     = Sphere
     { center :: Point
     , radius :: FlType
+    }
+
+data Triangle
+    = Triangle
+    { p1 :: Point
+    , p2 :: Point
+    , p3 :: Point
     }
