@@ -4,9 +4,6 @@ import Protolude
 
 import Test.Hspec
 
-import qualified Linear.Affine as LAF
-import qualified Linear.V3     as LV3
-
 import qualified OrangeCorndog.Types as OTY
 import qualified OrangeCorndog.Intersection as OIN
 
