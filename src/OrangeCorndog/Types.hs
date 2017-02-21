@@ -3,9 +3,9 @@ module OrangeCorndog.Types
     , Vec, mkV
     , Point, mkP
     , mkRay
-    , Ray(origin, direction)
+    , Ray(..)
     , Sphere(..)
-    , Triangle(p1, p2, p3, normal)
+    , Triangle(..)
     , mkTriangle
     ) where
 
@@ -32,11 +32,7 @@ mkRay a b = Ray a dir
     dir = LME.signorm (b LAF..-. a)
 
 mkTriangle :: Point -> Point -> Point -> Triangle
-mkTriangle a b c = Triangle a b c n
-  where
-    v1 = a LAF..-. b
-    v2 = a LAF..-. c
-    n  = LV3.cross v1 v2
+mkTriangle = Triangle
 
 data Ray
     = Ray
@@ -55,5 +51,4 @@ data Triangle
     { p1 :: Point
     , p2 :: Point
     , p3 :: Point
-    , normal :: Vec
     }
