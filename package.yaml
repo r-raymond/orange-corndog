@@ -30,14 +30,16 @@ dependencies:
     - fast-logger
     - hspec
     - criterion
+    - sdl2
 
 library:
   source-dirs: src
 
 executables:
-    orange-corndog:
+    oc:
         source-dirs: app
         main: Main.hs
+        extra-libraries: SDL2
         ghc-options: -threaded -rtsopts -with-rtsopts=-N
         dependencies:
             - orange-corndog
