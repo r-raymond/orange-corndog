@@ -1,6 +1,7 @@
 module OrangeCorndog.Intersection
     ( intersectSphereRay
     , intersectPlaneRay
+    , intersectTriangleRay
     ) where
 
 import Protolude
@@ -41,17 +42,17 @@ solveLeq :: OTY.Vec
          -> Maybe OTY.FlType
 solveLeq d (a,b,c) bxc inv_det = do
     u <- go1 d bxc inv_det
-    (q, v) <- go2 d a c inv_det u
+    q <- go2 d a c inv_det u
     go3 b q inv_det
       where
-        go1 x y id = let pu = (x `LME.dot` y) * id
-                     in if pu > 0 && pu < 1
+        go1 x y id = let pu = (-1) * (x `LME.dot` y) * id
+                     in if pu >= 0 && pu <= 1
                             then Just pu
                             else Nothing
         go2 x y z id pu = let pq = (x `LV3.cross` y)
                               pv = (pq `LME.dot` z) * id
-                          in if pv > 0 && pu + pv < 1
-                              then Just (pq, pv)
+                          in if pv >= 0 && pu + pv <= 1
+                              then Just pq
                               else Nothing
         go3 x y id = let pt = (x `LME.dot` y) * id
                      in if pt > eps
@@ -73,7 +74,7 @@ intersectTRHelper a b c =
         then Just (bxc, 1/det)
         else Nothing
       where bxc = b `LV3.cross` c
-            det = a `LME.dot` b
+            det = a `LME.dot` bxc
 
 intersectPlaneRay :: OTY.Vec -> OTY.Point -> OTY.Ray -> Maybe OTY.Point
 intersectPlaneRay n p r = 
