@@ -1,5 +1,6 @@
 module OrangeCorndog.Intersection
     ( intersectSphereRay
+    , intersectPlaneRay
     ) where
 
 import Protolude
@@ -21,14 +22,13 @@ intersectPlaneRay :: OTY.Vec -> OTY.Point -> OTY.Ray -> Maybe OTY.Point
 intersectPlaneRay n p r = 
     if dn > eps
         then 
-            let t = ((p LAF..-. o) `LME.dot` n) / (d `LME.dot` n)
-                pt = o + t LVE.*^ d
+            let t = ((p LAF..-. o) `LME.dot` n) / dn
+                pt = o LAF..+^ t LVE.*^ d
             in Just pt
         else Nothing
       where
         (o, d) = (OTY.origin r, OTY.direction r)
-        n = OTY.normal t
-        dn = d `LME.dot` h
+        dn = d `LME.dot` n
 
 
 -- |Calculate the intersection of a Sphere with a Ray.
