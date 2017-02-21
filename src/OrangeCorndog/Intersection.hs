@@ -10,6 +10,27 @@ import qualified Linear.Metric as LME
 
 import qualified OrangeCorndog.Types as OTY
 
+eps :: OTY.FlType
+eps = 0.000001
+
+-- |Calculate the intersection of a Triangle with a Ray
+intersectTriangleRay :: OTY.Triangle -> OTY.Ray -> Maybe OTY.Point
+intersectTriangleRay t r = undefined
+
+intersectPlaneRay :: OTY.Vec -> OTY.Point -> OTY.Ray -> Maybe OTY.Point
+intersectPlaneRay n p r = 
+    if dn > eps
+        then 
+            let t = ((p LAF..-. o) `LME.dot` n) / (d `LME.dot` n)
+                pt = o + t LVE.*^ d
+            in Just pt
+        else Nothing
+      where
+        (o, d) = (OTY.origin r, OTY.direction r)
+        n = OTY.normal t
+        dn = d `LME.dot` h
+
+
 -- |Calculate the intersection of a Sphere with a Ray.
 -- This function will return the intersection with the smaller _positive_ time
 -- in the description of the ray. Returns `Nothing` if no intersection
